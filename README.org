@@ -1,0 +1,52 @@
+#+TITLE:  Algorithms & Data Structures with Rust
+#+AUTHOR: Dang Quang Vu
+#+EMAIL: eamondang@gmail.com
+#+DESCRIPTION: The journey to become supper rust coder
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
+
+* Recursion
++ Recursion is a programming concept where a function calls itself repeatedly until a certain condition is met. In other words, it's a technique where a function solves a problem by calling it self as a subroutine.
+** Linear Recursion
++ Linear recursion is a type of recursion where each function call results in exactly one recursive call. In other words, the function calls itself.
+#+begin_src rustic
+fn linear_recursion(n: usize) -> usize {
+    if n == 0 {
+        return 1;
+    }
+    n * linear_recursion(n - 1)
+}
+
+fn fibonacci(n: usize) -> usize {
+    match n {
+        0 => 0,
+        1 => 1,
+        _ => fibonacci(n - 1) + fibonacci(n - 2),
+    }
+}
+
+fn fibonacci_array(n: usize) -> Vec<i32> {
+    let mut fibo: Vec<i32> = Vec::with_capacity(n);
+
+    for i in 0..n {
+        match i {
+            0 => fibo.push(0),
+            1 => fibo.push(1),
+            _ => {
+                let fib_iter = fibo[i - 1] + fibo[i - 2];
+                fibo.push(fib_iter)
+            }
+        }
+    }
+    fibo
+}
+
+fn main() {
+    println!("Linear Recursion: {:?}",linear_recursion(5));
+    println!("Fibonacci Number :{:?}",fibonacci(10));
+    println!("Fibonacci Array :{:?}",fibonacci_array(11));
+}
+#+end_src
+
+: Linear Recursion: 120
+: Fibonacci Number :55
+: Fibonacci Array :[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]

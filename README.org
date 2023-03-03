@@ -6,7 +6,7 @@
 
 * Recursion
 + Recursion is a programming concept where a function calls itself repeatedly until a certain condition is met. In other words, it's a technique where a function solves a problem by calling it self as a subroutine.
-*** Linear Recursion
+*** =Linear Recursion=
 + Linear recursion is a type of recursion where each function call results in exactly one recursive call. In other words, the function calls itself.
 #+begin_src rustic
 fn linear_recursion(n: usize) -> usize {

@@ -4,9 +4,14 @@
 #+DESCRIPTION: The journey to become supper rust coder
 #+SETUPFILE: https://fniessen.github.io/org-html-themes/org/theme-readtheorg.setup
 
+* Table of Contents :toc:
+- [[#recursion][Recursion]]
+  - [[#linear-recursion][=Linear Recursion=]]
+  - [[#tail-recursion][=Tail Recursion=]]
+
 * Recursion
 + Recursion is a programming concept where a function calls itself repeatedly until a certain condition is met. In other words, it's a technique where a function solves a problem by calling it self as a subroutine.
-*** =Linear Recursion=
+** =Linear Recursion=
 + Linear recursion is a type of recursion where each function call results in exactly one recursive call. In other words, the function calls itself.
 #+begin_src rustic
 fn linear_recursion(n: usize) -> usize {
@@ -50,3 +55,31 @@ fn main() {
 : Linear Recursion: 120
 : Fibonacci Number :55
 : Fibonacci Array :[0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55]
+
+** =Tail Recursion=
++ Tail recursion is a type of recusion where the recursive call is the last operation performed within a function.
++ In others words, the function calls itself and the result of that call is immediately returned as ther result of the current function call, without any further processing.
+
+#+begin_src rustic
+fn gcd(m: i32, n: i32) -> i32 {
+    let mut r: i32;
+    if m < n {
+        return gcd(n, m);
+    }
+    r = m % n;
+    if r == 0 {
+        return n;
+    }
+    else {
+        return gcd(n, r);
+    }
+}
+
+fn main() {
+    let result = gcd(2,7);
+    println!("{:?}" ,result);
+}
+#+end_src
+
+#+RESULTS:
+: 1
